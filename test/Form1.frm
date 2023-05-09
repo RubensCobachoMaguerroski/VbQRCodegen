@@ -1,37 +1,57 @@
 VERSION 5.00
 Begin VB.Form Form1 
    Caption         =   "Form1"
-   ClientHeight    =   8736
-   ClientLeft      =   108
-   ClientTop       =   456
-   ClientWidth     =   8304
+   ClientHeight    =   4440
+   ClientLeft      =   105
+   ClientTop       =   450
+   ClientWidth     =   7635
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   ScaleHeight     =   8736
-   ScaleWidth      =   8304
-   StartUpPosition =   3  'Windows Default
-   Begin VB.CheckBox Check1 
-      Caption         =   "Square"
-      Height          =   192
-      Left            =   6300
-      TabIndex        =   1
-      Top             =   252
-      Width           =   936
+   ScaleHeight     =   4440
+   ScaleWidth      =   7635
+   StartUpPosition =   3  'Padrão Windows
+   Begin VB.PictureBox Picture1 
+      Height          =   3570
+      Left            =   3960
+      ScaleHeight     =   3510
+      ScaleWidth      =   3510
+      TabIndex        =   3
+      TabStop         =   0   'False
+      Top             =   720
+      Width           =   3570
    End
    Begin VB.TextBox Text1 
       Height          =   348
       Left            =   252
-      TabIndex        =   0
+      TabIndex        =   2
       Text            =   "http://www.vbforums.com"
       Top             =   168
-      Width           =   5976
+      Width           =   5490
+   End
+   Begin VB.CommandButton cmdCommand1 
+      Height          =   480
+      Left            =   6960
+      Picture         =   "Form1.frx":0000
+      Style           =   1  'Graphical
+      TabIndex        =   1
+      Top             =   120
+      Width           =   510
+   End
+   Begin VB.CheckBox Check1 
+      Caption         =   "Square"
+      Height          =   192
+      Left            =   5940
+      TabIndex        =   0
+      Top             =   252
+      Value           =   1  'Marcado
+      Width           =   930
    End
    Begin VB.Image Image1 
-      Height          =   7656
+      Height          =   3570
       Left            =   252
       Stretch         =   -1  'True
-      Top             =   756
-      Width           =   7656
+      Top             =   750
+      Width           =   3570
    End
 End
 Attribute VB_Name = "Form1"
@@ -51,6 +71,12 @@ Attribute VB_Exposed = False
 '=========================================================================
 Option Explicit
 DefObj A-Z
+
+Private Sub cmdCommand1_Click()
+Picture1.Picture = Image1.Picture
+SavePicture Picture1, App.Path & "\" & Text1.Text & ".jpg"
+MsgBox "Salvo em:" & vbNewLine & App.Path & "\" & Text1.Text & ".jpg", vbExclamation, "Imagem salva:"
+End Sub
 
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     Dim baBarCode()     As Byte
